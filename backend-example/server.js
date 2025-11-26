@@ -83,10 +83,9 @@ app.post('/create-checkout-session', async (req, res) => {
 
     const priceId = process.env.STRIPE_PRICE_ID || 'price_1SXnst86tpt5LW4R5r4HJKQG';
     
-    // Use Vercel domain for redirect (Stripe doesn't support chrome-extension://)
-    const baseUrl = process.env.VERCEL_URL 
-      ? `https://${process.env.VERCEL_URL}` 
-      : 'https://popup-topaz.vercel.app';
+    // Use production Vercel domain for redirect (Stripe doesn't support chrome-extension://)
+    // Always use production domain, not preview URLs
+    const baseUrl = process.env.PRODUCTION_URL || 'https://popup-topaz.vercel.app';
 
     const session = await stripe.checkout.sessions.create({
       payment_method_types: ['card'],
