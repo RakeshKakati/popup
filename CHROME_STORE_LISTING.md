@@ -223,6 +223,11 @@ Note: Payment processing happens via Stripe (separate flow)
 **6. Certification**
 ☑ I certify that the disclosures I have made are complete, accurate, and I will keep them updated.
 
+**Privacy Policy URL:**
+```
+https://www.trypopup.com/privacy.html
+```
+
 ---
 
 ## Permissions Justification
