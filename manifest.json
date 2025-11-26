@@ -1,8 +1,8 @@
 {
   "manifest_version": 3,
-  "name": "LinkedIn Post Pop-out",
-  "version": "0.1.0",
-  "description": "Drag any LinkedIn feed post into the floating drop zone to open it inside its own distraction-free window.",
+  "name": "Popup - LinkedIn Knowledge Manager",
+  "version": "1.0.0",
+  "description": "Turn LinkedIn posts into your personal library. Save, tag, and organize with powerful search and export.",
   "permissions": [
     "storage",
     "windows",
@@ -50,7 +50,7 @@
     "default_path": "sidepanel/sidepanel.html"
   },
   "action": {
-    "default_title": "LinkedIn Post Manager",
+    "default_title": "Popup",
     "default_popup": "popup/popup.html"
   },
   "icons": {
