@@ -4,6 +4,9 @@ const STRIPE_PUBLISHABLE_KEY = 'pk_test_51S3pLq86tpt5LW4RTPgWBhrzrrHuUjQvYhP7hEq
 // REPLACE WITH YOUR STRIPE CHECKOUT SESSION ENDPOINT
 const CHECKOUT_ENDPOINT = 'https://popup-topaz.vercel.app/create-checkout-session';
 
+// TEST MODE: Set to false when backend is deployed and working
+const TEST_MODE = true;
+
 // Load Stripe.js
 const stripe = window.Stripe ? window.Stripe(STRIPE_PUBLISHABLE_KEY) : null;
 
@@ -19,7 +22,25 @@ document.getElementById('checkout-btn').addEventListener('click', async () => {
   btn.textContent = 'Loading...';
 
   try {
-    // Get user's extension ID for tracking
+    // TEST MODE: Skip backend and activate Pro directly
+    if (TEST_MODE) {
+      console.log('🧪 TEST MODE: Activating Pro without payment...');
+      
+      // Simulate payment delay
+      await new Promise(resolve => setTimeout(resolve, 1000));
+      
+      // Activate Pro
+      chrome.storage.local.set({ isPro: true }, () => {
+        console.log('✅ Pro activated (test mode)');
+        
+        // Redirect to success page
+        window.location.href = chrome.runtime.getURL('payment/success.html');
+      });
+      
+      return;
+    }
+    
+    // PRODUCTION MODE: Real Stripe payment
     const extensionId = chrome.runtime.id;
     
     // Call your backend to create a Stripe Checkout Session
@@ -28,9 +49,13 @@ document.getElementById('checkout-btn').addEventListener('click', async () => {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
         extensionId,
-        priceId: 'price_1SXnst86tpt5LW4R5r4HJKQG' // Replace with your Stripe Price ID
+        priceId: 'price_1SXnst86tpt5LW4R5r4HJKQG'
       })
     });
+
+    if (!response.ok) {
+      throw new Error(`Backend error: ${response.status}`);
+    }
 
     const { sessionId } = await response.json();
 
@@ -46,7 +71,13 @@ document.getElementById('checkout-btn').addEventListener('click', async () => {
     }
   } catch (error) {
     console.error('Checkout error:', error);
-    alert('Something went wrong. Please try again.');
+    
+    // Show helpful error message
+    const errorMsg = TEST_MODE 
+      ? 'Test mode activation failed. Check console for details.'
+      : 'Backend not reachable. Please check that your backend is deployed and CHECKOUT_ENDPOINT is correct. Or enable TEST_MODE for local testing.';
+    
+    alert(errorMsg);
   } finally {
     btn.disabled = false;
     btn.textContent = 'Upgrade Now';
