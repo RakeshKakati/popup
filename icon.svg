@@ -1,24 +1,15 @@
-<svg width="128" height="128" viewBox="0 0 128 128" xmlns="http://www.w3.org/2000/svg">
+<svg width="128" height="128" viewBox="0 0 128 128" fill="none" xmlns="http://www.w3.org/2000/svg">
   <!-- Background -->
-  <rect width="128" height="128" rx="24" fill="#0A66C2"/>
+  <rect width="128" height="128" rx="24" fill="url(#gradient)"/>
   
-  <!-- LinkedIn 'in' inspired design with pop-out arrow -->
-  <g transform="translate(28, 32)">
-    <!-- Letter 'L' -->
-    <rect x="0" y="0" width="12" height="48" rx="2" fill="#FFFFFF"/>
-    <rect x="0" y="48" width="24" height="12" rx="2" fill="#FFFFFF"/>
-    
-    <!-- Pop-out window icon -->
-    <rect x="36" y="8" width="36" height="36" rx="4" fill="none" stroke="#FFFFFF" stroke-width="3"/>
-    <rect x="42" y="14" width="24" height="24" rx="2" fill="#FFFFFF" opacity="0.3"/>
-    
-    <!-- Arrow pointing out -->
-    <path d="M 60 4 L 72 4 L 72 16 M 72 4 L 60 16" 
-          stroke="#FFFFFF" 
-          stroke-width="3" 
-          stroke-linecap="round" 
-          stroke-linejoin="round" 
-          fill="none"/>
-  </g>
+  <!-- Checkmark -->
+  <path d="M40 64L56 80L88 48" stroke="white" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+  
+  <!-- Gradient Definition -->
+  <defs>
+    <linearGradient id="gradient" x1="0" y1="0" x2="128" y2="128" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#667eea"/>
+      <stop offset="100%" stop-color="#0A66C2"/>
+    </linearGradient>
+  </defs>
 </svg>
-
