@@ -1,5 +1,5 @@
 // REPLACE WITH YOUR STRIPE CHECKOUT SESSION ENDPOINT
-const CHECKOUT_ENDPOINT = 'https://popup-topaz.vercel.app/create-checkout-session';
+const CHECKOUT_ENDPOINT = 'https://www.trypopup.com/create-checkout-session';
 
 // TEST MODE: Set to false when backend is deployed and working
 const TEST_MODE = false;

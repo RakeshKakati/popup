@@ -11,7 +11,7 @@ const errorEl = document.getElementById('error');
 const copyBtn = document.getElementById('copy-btn');
 
 // Backend URL (change to your deployed backend)
-const BACKEND_URL = 'https://popup-topaz.vercel.app';
+const BACKEND_URL = 'https://www.trypopup.com';
 
 async function fetchLicenseKey() {
   try {

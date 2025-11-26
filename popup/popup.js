@@ -1,5 +1,5 @@
 // Backend URL
-const BACKEND_URL = 'https://trypopup.com';
+const BACKEND_URL = 'https://www.trypopup.com';
 
 // Elements
 const statusEl = document.getElementById('status');
