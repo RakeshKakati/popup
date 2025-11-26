@@ -95,7 +95,10 @@ app.post('/create-checkout-session', async (req, res) => {
       }
     });
 
-    res.json({ sessionId: session.id });
+    res.json({ 
+      sessionId: session.id,
+      url: session.url  // Stripe provides the checkout URL
+    });
   } catch (error) {
     console.error('Error creating checkout session:', error);
     res.status(500).json({ error: error.message });

@@ -1,47 +1,10 @@
-// REPLACE WITH YOUR STRIPE PUBLISHABLE KEY
-const STRIPE_PUBLISHABLE_KEY = 'pk_test_51S3pLq86tpt5LW4RTPgWBhrzrrHuUjQvYhP7hEqbZ30s3xGT8dyFv76euJzuwX5zwiXoYN3q0opEBdBQ8EkbTHbL00mnde10YZ';
-
 // REPLACE WITH YOUR STRIPE CHECKOUT SESSION ENDPOINT
 const CHECKOUT_ENDPOINT = 'https://popup-topaz.vercel.app/create-checkout-session';
 
 // TEST MODE: Set to false when backend is deployed and working
 const TEST_MODE = false;
 
-// Initialize Stripe (will be set when loaded)
-let stripe = null;
-
-// Load Stripe.js dynamically to avoid CSP issues
-async function loadStripe() {
-  try {
-    // Fetch Stripe.js as text
-    const response = await fetch('https://js.stripe.com/v3/');
-    const stripeCode = await response.text();
-    
-    // Create a script element and inject the code
-    const script = document.createElement('script');
-    script.textContent = stripeCode;
-    document.head.appendChild(script);
-    
-    // Wait a bit for Stripe to initialize
-    await new Promise(resolve => setTimeout(resolve, 100));
-    
-    if (window.Stripe) {
-      stripe = window.Stripe(STRIPE_PUBLISHABLE_KEY);
-      console.log('✅ Stripe loaded successfully');
-    } else {
-      console.error('❌ Stripe.js failed to initialize');
-    }
-  } catch (error) {
-    console.error('❌ Failed to load Stripe.js:', error);
-  }
-}
-
-// Load Stripe when DOM is ready
-if (document.readyState === 'loading') {
-  document.addEventListener('DOMContentLoaded', loadStripe);
-} else {
-  loadStripe();
-}
+console.log('💳 Checkout page loaded');
 
 // Display current post count
 chrome.storage.local.get(['savedPosts'], (result) => {
@@ -86,6 +49,8 @@ document.getElementById('checkout-btn').addEventListener('click', async () => {
     // PRODUCTION MODE: Real Stripe payment
     const extensionId = chrome.runtime.id;
     
+    console.log('📡 Creating checkout session...');
+    
     // Call your backend to create a Stripe Checkout Session
     const response = await fetch(CHECKOUT_ENDPOINT, {
       method: 'POST',
@@ -100,18 +65,18 @@ document.getElementById('checkout-btn').addEventListener('click', async () => {
       throw new Error(`Backend error: ${response.status}`);
     }
 
-    const { sessionId } = await response.json();
+    const data = await response.json();
+    console.log('✅ Session created:', data);
 
-    // Redirect to Stripe Checkout
-    if (stripe) {
-      const { error } = await stripe.redirectToCheckout({ sessionId });
-      if (error) {
-        console.error('Stripe error:', error);
-        alert('Payment failed. Please try again.');
-      }
-    } else {
-      alert('Stripe is not loaded. Please refresh and try again.');
+    if (!data.url) {
+      throw new Error('No checkout URL received from backend');
     }
+    
+    console.log('🔗 Redirecting to Stripe checkout...');
+    
+    // Redirect directly to Stripe's hosted checkout page
+    // No need for Stripe.js SDK!
+    window.location.href = data.url;
   } catch (error) {
     console.error('Checkout error:', error);
     
