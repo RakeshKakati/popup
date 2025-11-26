@@ -4,24 +4,15 @@
     {
       "src": "backend-example/server.js",
       "use": "@vercel/node"
-    },
-    {
-      "src": "landing/**",
-      "use": "@vercel/static"
     }
   ],
   "routes": [
     {
-      "src": "/api/(.*)",
-      "dest": "backend-example/server.js"
-    },
-    {
       "src": "/(.*)",
-      "dest": "landing/$1"
+      "dest": "backend-example/server.js"
     }
   ],
   "env": {
     "NODE_ENV": "production"
   }
 }
-

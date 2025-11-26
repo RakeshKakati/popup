@@ -10,6 +10,20 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
+// Health check endpoint
+app.get('/', (req, res) => {
+  res.json({ 
+    status: 'ok',
+    message: 'LinkedIn Post Manager API is running',
+    endpoints: {
+      'POST /create-checkout-session': 'Create Stripe checkout session',
+      'GET /get-session': 'Get license key after payment',
+      'POST /verify-license': 'Verify license key',
+      'POST /webhook': 'Stripe webhook handler'
+    }
+  });
+});
+
 // Secret key for signing license keys (set in Vercel env vars)
 const LICENSE_SECRET = process.env.LICENSE_SECRET || 'your-secret-key-change-this-in-production';
 

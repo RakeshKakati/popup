@@ -5,7 +5,7 @@ const STRIPE_PUBLISHABLE_KEY = 'pk_test_51S3pLq86tpt5LW4RTPgWBhrzrrHuUjQvYhP7hEq
 const CHECKOUT_ENDPOINT = 'https://popup-topaz.vercel.app/create-checkout-session';
 
 // TEST MODE: Set to false when backend is deployed and working
-const TEST_MODE = true;
+const TEST_MODE = false;
 
 // Load Stripe.js
 const stripe = window.Stripe ? window.Stripe(STRIPE_PUBLISHABLE_KEY) : null;
