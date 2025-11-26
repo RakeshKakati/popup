@@ -23,8 +23,11 @@ Your code is now at: **https://github.com/RakeshKakati/popup**
    ```
    STRIPE_SECRET_KEY = your_stripe_secret_key_here (from Stripe Dashboard → API Keys)
    STRIPE_PRICE_ID = price_1SXnst86tpt5LW4R5r4HJKQG
+   LICENSE_SECRET = your-random-secret-key-here (make up a long random string)
    STRIPE_WEBHOOK_SECRET = whsec_xxxxxxxxxxxxxxxxxxxxxxxx (get this in Step 2)
    ```
+   
+   **Important:** `LICENSE_SECRET` is used to sign license keys. Keep it secret!
 
 ### Step 2: Set Up Stripe Webhook (1 minute)
 
@@ -40,16 +43,27 @@ Your code is now at: **https://github.com/RakeshKakati/popup**
 
 ### Step 3: Update Extension (1 minute)
 
-Update the backend URL in `payment/checkout.js`:
+Update the backend URL in these files:
 
+1. `payment/checkout.js`:
 ```javascript
 const CHECKOUT_ENDPOINT = 'https://YOUR-VERCEL-URL.vercel.app/create-checkout-session';
+```
+
+2. `payment/success.js`:
+```javascript
+const BACKEND_URL = 'https://YOUR-VERCEL-URL.vercel.app';
+```
+
+3. `popup/popup.js`:
+```javascript
+const BACKEND_URL = 'https://YOUR-VERCEL-URL.vercel.app';
 ```
 
 Then:
 ```bash
 cd /Users/rakesh/Newtest
-git add payment/checkout.js
+git add payment/checkout.js payment/success.js popup/popup.js
 git commit -m "Update backend URL"
 git push
 ```

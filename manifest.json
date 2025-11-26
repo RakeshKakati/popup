@@ -50,7 +50,8 @@
     "default_path": "sidepanel/sidepanel.html"
   },
   "action": {
-    "default_title": "LinkedIn Post Pop-out"
+    "default_title": "LinkedIn Post Manager",
+    "default_popup": "popup/popup.html"
   },
   "icons": {
     "16": "icon16.png",

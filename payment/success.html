@@ -3,12 +3,12 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Welcome to Pro!</title>
+  <title>Payment Successful</title>
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-      background: linear-gradient(135deg, #f8f9fa 0%, #e8eef3 100%);
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
       min-height: 100vh;
       display: flex;
       align-items: center;
@@ -19,8 +19,8 @@
       background: white;
       padding: 60px 40px;
       border-radius: 16px;
-      box-shadow: 0 12px 32px rgba(0,0,0,0.1);
-      max-width: 480px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+      max-width: 520px;
       width: 100%;
       text-align: center;
     }
@@ -33,39 +33,177 @@
       margin-bottom: 16px;
       color: #1c1d1f;
     }
-    p {
+    .subtitle {
       color: #666;
       margin-bottom: 32px;
       font-size: 16px;
-      line-height: 1.6;
     }
-    .btn {
-      display: inline-block;
-      padding: 14px 32px;
-      background: #0A66C2;
-      color: white;
-      text-decoration: none;
-      border-radius: 8px;
+    
+    .license-box {
+      background: #f7fafc;
+      border: 2px solid #e2e8f0;
+      border-radius: 12px;
+      padding: 24px;
+      margin: 24px 0;
+      display: none;
+    }
+    
+    .license-box.show {
+      display: block;
+    }
+    
+    .license-label {
+      font-size: 14px;
+      color: #718096;
       font-weight: 600;
+      margin-bottom: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    
+    .license-key {
+      font-family: 'Courier New', monospace;
+      font-size: 24px;
+      font-weight: bold;
+      color: #2d3748;
+      letter-spacing: 2px;
+      margin: 16px 0;
+      padding: 20px;
+      background: white;
+      border-radius: 8px;
+      user-select: all;
+      cursor: pointer;
+      border: 2px dashed #cbd5e0;
       transition: all 0.2s;
     }
-    .btn:hover {
-      background: #004182;
+    
+    .license-key:hover {
+      border-color: #667eea;
+      background: #fafafa;
+    }
+    
+    .copy-btn {
+      background: #48bb78;
+      color: white;
+      border: none;
+      padding: 12px 32px;
+      font-size: 15px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: 600;
+      margin-top: 12px;
+      transition: all 0.2s;
+    }
+    
+    .copy-btn:hover {
+      background: #38a169;
       transform: translateY(-2px);
+    }
+    
+    .copy-btn.copied {
+      background: #4299e1;
+    }
+    
+    .email-info {
+      margin-top: 16px;
+      font-size: 14px;
+      color: #718096;
+    }
+    
+    .email {
+      color: #667eea;
+      font-weight: 600;
+    }
+    
+    .instructions {
+      background: #fffaf0;
+      border-left: 4px solid #ed8936;
+      padding: 20px;
+      margin: 24px 0;
+      text-align: left;
+      font-size: 15px;
+      border-radius: 8px;
+      display: none;
+    }
+    
+    .instructions.show {
+      display: block;
+    }
+    
+    .instructions strong {
+      display: block;
+      margin-bottom: 12px;
+      color: #2d3748;
+    }
+    
+    .instructions ol {
+      margin: 0 0 0 20px;
+      padding: 0;
+    }
+    
+    .instructions li {
+      margin: 8px 0;
+      color: #4a5568;
+      line-height: 1.6;
+    }
+    
+    .loading {
+      color: #718096;
+      font-style: italic;
+      padding: 20px;
+    }
+    
+    .error {
+      background: #fff5f5;
+      border-left: 4px solid #f56565;
+      padding: 20px;
+      margin: 24px 0;
+      text-align: left;
+      font-size: 15px;
+      border-radius: 8px;
+      color: #742a2a;
+      display: none;
+    }
+    
+    .error.show {
+      display: block;
     }
   </style>
 </head>
 <body>
   <div class="card">
     <div class="icon">🎉</div>
-    <h1>Welcome to Pro!</h1>
-    <p>
-      Your payment was successful. You now have <strong>unlimited access</strong> to save LinkedIn posts, create collections, and use all Pro features.
-    </p>
-    <a href="#" class="btn" id="continue-btn">Continue to Extension</a>
+    <h1>Payment Successful!</h1>
+    <p class="subtitle loading" id="loading">Generating your license key...</p>
+    
+    <div id="license-box" class="license-box">
+      <div class="license-label">Your Pro License Key</div>
+      <div class="license-key" id="license-key" title="Click to select">LPPM-XXXX-XXXX-XXXX-XXXX</div>
+      <button class="copy-btn" id="copy-btn">📋 Copy to Clipboard</button>
+      <div class="email-info">
+        License sent to: <span class="email" id="email">loading...</span>
+      </div>
+    </div>
+
+    <div id="instructions" class="instructions">
+      <strong>📝 How to Activate Pro:</strong>
+      <ol>
+        <li>Copy your license key above (click the Copy button)</li>
+        <li>Go to LinkedIn and click the extension icon</li>
+        <li>Click <strong>"Activate License"</strong> in the popup</li>
+        <li>Paste your key and enjoy unlimited saves! 🚀</li>
+      </ol>
+      <p style="margin-top: 12px; color: #718096; font-size: 13px;">
+        💡 Save this key somewhere safe. You'll need it if you reinstall the extension.
+      </p>
+    </div>
+
+    <div id="error" class="error">
+      <strong>⚠️ Could not generate license key</strong>
+      <p style="margin-top: 8px;">Please contact support with your payment confirmation.</p>
+    </div>
   </div>
 
   <script src="success.js"></script>
 </body>
 </html>
-
