@@ -121,12 +121,15 @@ app.get('/get-session', async (req, res) => {
       return res.status(400).json({ error: 'Payment not completed' });
     }
     
+    // Get customer email (may be in customer_details or customer_email)
+    const customerEmail = session.customer_details?.email || session.customer_email || 'customer@example.com';
+    
     // Generate license key
-    const licenseKey = generateLicenseKey(session.customer_email, session.id);
+    const licenseKey = generateLicenseKey(customerEmail, session.id);
     
     res.json({
       success: true,
-      email: session.customer_email,
+      email: customerEmail,
       licenseKey: licenseKey,
       sessionId: session.id
     });
