@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Redirecting...</title>
+  <style>
+    body {
+      font-family: -apple-system, system-ui, sans-serif;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      margin: 0;
+      background: #f5f5f5;
+    }
+    .loader {
+      text-align: center;
+    }
+    .spinner {
+      border: 3px solid #f3f3f3;
+      border-top: 3px solid #0A66C2;
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      animation: spin 1s linear infinite;
+      margin: 0 auto 20px;
+    }
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+  </style>
+</head>
+<body>
+  <div class="loader">
+    <div class="spinner"></div>
+    <p>Redirecting to success page...</p>
+  </div>
+  
+  <script>
+    // Fix Stripe's broken redirect URL (missing colon in chrome-extension://)
+    const currentUrl = window.location.href;
+    
+    // Check if we're on a malformed URL
+    if (currentUrl.includes('chrome-extension//')) {
+      // Fix the URL by adding the missing colon
+      const fixedUrl = currentUrl.replace('chrome-extension//', 'chrome-extension://');
+      console.log('Fixing malformed URL:', currentUrl);
+      console.log('Redirecting to:', fixedUrl);
+      window.location.replace(fixedUrl);
+    } else {
+      // Already correct, just show a message
+      console.log('URL is correct:', currentUrl);
+      document.body.innerHTML = '<div class="loader"><p>✅ Already on correct page!</p></div>';
+    }
+  </script>
+</body>
+</html>
+

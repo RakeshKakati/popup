@@ -88,8 +88,8 @@ app.post('/create-checkout-session', async (req, res) => {
         },
       ],
       mode: 'payment',
-      success_url: `chrome-extension://${extensionId}/payment/success.html?session_id={CHECKOUT_SESSION_ID}`,
-      cancel_url: `chrome-extension://${extensionId}/payment/checkout.html`,
+      success_url: encodeURI(`chrome-extension://${extensionId}/payment/success.html?session_id={CHECKOUT_SESSION_ID}`),
+      cancel_url: encodeURI(`chrome-extension://${extensionId}/payment/checkout.html`),
       metadata: {
         extensionId
       }
