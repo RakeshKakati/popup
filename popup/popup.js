@@ -1,5 +1,5 @@
 // Backend URL
-const BACKEND_URL = 'https://popup-topaz.vercel.app';
+const BACKEND_URL = 'https://trypopup.com';
 
 // Elements
 const statusEl = document.getElementById('status');
