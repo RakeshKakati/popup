@@ -15,18 +15,47 @@ const BACKEND_URL = 'https://popup-topaz.vercel.app';
 
 async function fetchLicenseKey() {
   try {
+    // Debug: Log the URL
+    console.log('Current URL:', window.location.href);
+    console.log('Session ID from URL:', sessionId);
+    
     if (!sessionId) {
-      throw new Error('No session ID found');
+      console.error('No session_id parameter in URL!');
+      console.log('URL params:', window.location.search);
+      throw new Error('No session ID found in URL. Payment may not have completed.');
     }
 
-    // Fetch license key from backend
+    // Check if already activated in test mode (storage was set by checkout.js)
+    const storageData = await chrome.storage.local.get(['isPro', 'licenseKey', 'email']);
+    
+    if (storageData.isPro && storageData.licenseKey && sessionId.startsWith('cs_test_')) {
+      console.log('🧪 TEST MODE: Using existing license from storage');
+      
+      // Display test license key
+      licenseKeyEl.textContent = storageData.licenseKey;
+      emailEl.textContent = storageData.email;
+      
+      // Show UI
+      loadingEl.style.display = 'none';
+      licenseBoxEl.classList.add('show');
+      instructionsEl.classList.add('show');
+      
+      console.log('✅ Test license displayed:', storageData.licenseKey);
+      return;
+    }
+
+    // Production mode: Fetch license key from backend
+    console.log('Fetching license from:', `${BACKEND_URL}/get-session?session_id=${sessionId}`);
     const response = await fetch(`${BACKEND_URL}/get-session?session_id=${sessionId}`);
     
     if (!response.ok) {
-      throw new Error('Failed to fetch license');
+      const errorData = await response.json().catch(() => ({}));
+      console.error('Backend error:', errorData);
+      throw new Error(errorData.error || 'Failed to fetch license');
     }
 
     const data = await response.json();
+    console.log('Received data:', data);
     
     if (!data.success) {
       throw new Error(data.error || 'Unknown error');
@@ -54,12 +83,20 @@ async function fetchLicenseKey() {
   } catch (error) {
     console.error('Error fetching license:', error);
     
-    // Show error
+    // Show detailed error
     loadingEl.style.display = 'none';
+    errorEl.innerHTML = `
+      <strong>⚠️ Could not generate license key</strong>
+      <p style="margin-top: 8px;">${error.message}</p>
+      <p style="margin-top: 8px; font-size: 12px;">
+        Your payment was successful! Contact support with your payment confirmation.
+      </p>
+    `;
     errorEl.classList.add('show');
     
     // Fallback: activate Pro anyway (user paid!)
     chrome.storage.local.set({ isPro: true });
+    console.log('Pro activated as fallback');
   }
 }
 

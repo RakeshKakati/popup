@@ -63,11 +63,13 @@ app.post('/create-checkout-session', async (req, res) => {
   try {
     const { extensionId } = req.body;
 
+    const priceId = process.env.STRIPE_PRICE_ID || 'price_1SXnst86tpt5LW4R5r4HJKQG';
+
     const session = await stripe.checkout.sessions.create({
       payment_method_types: ['card'],
       line_items: [
         {
-          price: 'price_YOUR_STRIPE_PRICE_ID', // Replace with your Stripe Price ID
+          price: priceId,
           quantity: 1,
         },
       ],

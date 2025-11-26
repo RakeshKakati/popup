@@ -29,12 +29,22 @@ document.getElementById('checkout-btn').addEventListener('click', async () => {
       // Simulate payment delay
       await new Promise(resolve => setTimeout(resolve, 1000));
       
-      // Activate Pro
-      chrome.storage.local.set({ isPro: true }, () => {
+      // Generate a fake license key for testing
+      const testLicenseKey = 'LPPM-TEST-TEST-TEST-TEST';
+      
+      // Activate Pro with test data
+      chrome.storage.local.set({ 
+        isPro: true,
+        licenseKey: testLicenseKey,
+        email: 'test@example.com',
+        activatedAt: new Date().toISOString()
+      }, () => {
         console.log('✅ Pro activated (test mode)');
+        console.log('Test License Key:', testLicenseKey);
         
-        // Redirect to success page
-        window.location.href = chrome.runtime.getURL('payment/success.html');
+        // Redirect to success page with fake session ID
+        const fakeSessionId = 'cs_test_' + Date.now();
+        window.location.href = chrome.runtime.getURL(`payment/success.html?session_id=${fakeSessionId}`);
       });
       
       return;
