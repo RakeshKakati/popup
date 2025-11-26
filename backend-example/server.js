@@ -14,8 +14,16 @@ app.use(express.json());
 // Serve static files from public directory
 app.use(express.static(path.join(__dirname, '../public')));
 
-// Health check endpoint
+// Serve landing page assets
+app.use('/landing', express.static(path.join(__dirname, '../landing')));
+
+// Serve landing page at root
 app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, '../landing/index.html'));
+});
+
+// Health check / API status endpoint
+app.get('/api', (req, res) => {
   res.json({ 
     status: 'ok',
     message: 'LinkedIn Post Manager API is running',
