@@ -4,11 +4,15 @@
 const express = require('express');
 const cors = require('cors');
 const crypto = require('crypto');
+const path = require('path');
 const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY || 'sk_test_YOUR_SECRET_KEY_HERE');
 
 const app = express();
 app.use(cors());
 app.use(express.json());
+
+// Serve static files from public directory
+app.use(express.static(path.join(__dirname, '../public')));
 
 // Health check endpoint
 app.get('/', (req, res) => {
@@ -78,6 +82,11 @@ app.post('/create-checkout-session', async (req, res) => {
     const { extensionId } = req.body;
 
     const priceId = process.env.STRIPE_PRICE_ID || 'price_1SXnst86tpt5LW4R5r4HJKQG';
+    
+    // Use Vercel domain for redirect (Stripe doesn't support chrome-extension://)
+    const baseUrl = process.env.VERCEL_URL 
+      ? `https://${process.env.VERCEL_URL}` 
+      : 'https://popup-topaz.vercel.app';
 
     const session = await stripe.checkout.sessions.create({
       payment_method_types: ['card'],
@@ -88,8 +97,8 @@ app.post('/create-checkout-session', async (req, res) => {
         },
       ],
       mode: 'payment',
-      success_url: encodeURI(`chrome-extension://${extensionId}/payment/success.html?session_id={CHECKOUT_SESSION_ID}`),
-      cancel_url: encodeURI(`chrome-extension://${extensionId}/payment/checkout.html`),
+      success_url: `${baseUrl}/payment-success.html?session_id={CHECKOUT_SESSION_ID}&ext_id=${extensionId}`,
+      cancel_url: `chrome-extension://${extensionId}/payment/checkout.html`,
       metadata: {
         extensionId
       }

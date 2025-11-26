@@ -52,5 +52,28 @@ chrome.runtime.onMessage.addListener((message, _sender, sendResponse) => {
     sendResponse({ success: Boolean(data), data });
     return false;
   }
+
+  if (message.type === "STORE_SESSION_ID") {
+    // Store session ID for payment redirect
+    chrome.storage.local.set({ pendingSessionId: message.sessionId }, () => {
+      sendResponse({ success: true });
+    });
+    return true;
+  }
+});
+
+// Listen for tab updates to catch Stripe redirect
+chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
+  if (changeInfo.url && changeInfo.url.includes('stripe.com') && changeInfo.url.includes('session_id=')) {
+    // Extract session ID from Stripe URL
+    const url = new URL(changeInfo.url);
+    const sessionId = url.searchParams.get('session_id');
+    
+    if (sessionId) {
+      // Redirect to our success page
+      const successUrl = chrome.runtime.getURL(`payment/success.html?session_id=${sessionId}`);
+      chrome.tabs.update(tabId, { url: successUrl });
+    }
+  }
 });
 

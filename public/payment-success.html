@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Payment Successful - Redirecting...</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+    .card {
+      background: white;
+      padding: 60px 40px;
+      border-radius: 16px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+      max-width: 480px;
+      width: 100%;
+      text-align: center;
+    }
+    .icon {
+      font-size: 64px;
+      margin-bottom: 24px;
+    }
+    h1 {
+      font-size: 32px;
+      margin-bottom: 16px;
+      color: #1c1d1f;
+    }
+    p {
+      color: #666;
+      font-size: 16px;
+      margin-bottom: 24px;
+      line-height: 1.6;
+    }
+    .spinner {
+      border: 3px solid #f3f3f3;
+      border-top: 3px solid #667eea;
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      animation: spin 1s linear infinite;
+      margin: 0 auto;
+    }
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+    .manual-link {
+      margin-top: 32px;
+      padding-top: 24px;
+      border-top: 1px solid #e8eef3;
+    }
+    .manual-link a {
+      color: #667eea;
+      text-decoration: none;
+      font-weight: 600;
+    }
+    .manual-link a:hover {
+      text-decoration: underline;
+    }
+    .session-id {
+      font-family: 'Courier New', monospace;
+      font-size: 12px;
+      color: #999;
+      margin-top: 16px;
+      word-break: break-all;
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <div class="icon">🎉</div>
+    <h1>Payment Successful!</h1>
+    <p id="message">Redirecting you to your license key...</p>
+    <div class="spinner" id="spinner"></div>
+    
+    <div class="manual-link" id="manual-link" style="display: none;">
+      <p style="margin-bottom: 12px;">Extension not detected?</p>
+      <a href="#" id="manual-redirect">Click here to view your license key</a>
+    </div>
+    
+    <p class="session-id" id="session-info"></p>
+  </div>
+
+  <script>
+    const urlParams = new URLSearchParams(window.location.search);
+    const sessionId = urlParams.get('session_id');
+    const extensionId = urlParams.get('ext_id');
+    
+    document.getElementById('session-info').textContent = `Session: ${sessionId || 'none'}`;
+    
+    if (!sessionId) {
+      document.getElementById('message').textContent = 'Error: No session ID found.';
+      document.getElementById('spinner').style.display = 'none';
+    } else if (!extensionId) {
+      document.getElementById('message').textContent = 'Error: Extension ID missing.';
+      document.getElementById('spinner').style.display = 'none';
+    } else {
+      // Redirect to extension success page
+      const extensionUrl = `chrome-extension://${extensionId}/payment/success.html?session_id=${sessionId}`;
+      
+      console.log('Redirecting to:', extensionUrl);
+      
+      // Try to redirect
+      setTimeout(() => {
+        window.location.href = extensionUrl;
+      }, 1000);
+      
+      // Show manual link after 3 seconds in case auto-redirect fails
+      setTimeout(() => {
+        document.getElementById('manual-link').style.display = 'block';
+        document.getElementById('manual-redirect').href = extensionUrl;
+        document.getElementById('message').textContent = 'Click below if not redirected automatically.';
+        document.getElementById('spinner').style.display = 'none';
+      }, 3000);
+    }
+  </script>
+</body>
+</html>
+
