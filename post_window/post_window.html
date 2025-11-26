@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>LinkedIn Post</title>
+    <link rel="stylesheet" href="post_window.css" />
+  </head>
+  <body>
+    <div class="window">
+      <header class="window__header">
+        <div>
+          <p class="label">LinkedIn Post</p>
+          <p id="timestamp" class="timestamp"></p>
+        </div>
+        <div class="window__header-actions">
+          <button id="open-library-btn" type="button">Open library</button>
+          <button id="refresh-btn" type="button">Refresh</button>
+        </div>
+      </header>
+      <section id="post" class="post"></section>
+      <section class="capture">
+        <h2 class="capture__title">Save to collection</h2>
+        <label class="capture__field">
+          <span>Tags (comma separated)</span>
+          <input id="tags-input" type="text" placeholder="e.g. AI hiring, Design patterns" />
+        </label>
+        <label class="capture__field">
+          <span>Notes / highlights</span>
+          <textarea
+            id="notes-input"
+            rows="3"
+            placeholder="Add why this post matters, key quotes, or how you’ll use it."
+          ></textarea>
+        </label>
+        <div class="capture__actions">
+          <button id="save-post-btn" type="button">Save to library</button>
+        </div>
+      </section>
+      <p id="status" class="status"></p>
+    </div>
+
+    <script type="module" src="post_window.js"></script>
+  </body>
+</html>
+

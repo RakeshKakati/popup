@@ -1,0 +1,61 @@
+{
+  "manifest_version": 3,
+  "name": "LinkedIn Post Pop-out",
+  "version": "0.1.0",
+  "description": "Drag any LinkedIn feed post into the floating drop zone to open it inside its own distraction-free window.",
+  "permissions": [
+    "storage",
+    "windows",
+    "sidePanel"
+  ],
+  "host_permissions": [
+    "https://www.linkedin.com/*"
+  ],
+  "background": {
+    "service_worker": "background.js",
+    "type": "module"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://www.linkedin.com/*"
+      ],
+      "js": [
+        "content/drag.js"
+      ],
+      "css": [
+        "content/drag.css"
+      ],
+      "run_at": "document_idle"
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": [
+        "post_window/post_window.html",
+        "post_window/post_window.js",
+        "post_window/post_window.css",
+        "payment/checkout.html",
+        "payment/checkout.js",
+        "payment/success.html",
+        "payment/success.js"
+      ],
+      "matches": [
+        "https://www.linkedin.com/*",
+        "<all_urls>"
+      ]
+    }
+  ],
+  "side_panel": {
+    "default_path": "sidepanel/sidepanel.html"
+  },
+  "action": {
+    "default_title": "LinkedIn Post Pop-out"
+  },
+  "icons": {
+    "16": "icon16.png",
+    "48": "icon48.png",
+    "128": "icon128.png"
+  }
+}
+

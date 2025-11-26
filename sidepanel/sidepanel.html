@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>LinkedIn Library</title>
+    <link rel="stylesheet" href="sidepanel.css" />
+  </head>
+  <body>
+    <div class="sp-root">
+      <header class="sp-header">
+        <div class="sp-header-main">
+          <h1 class="sp-title">Post library</h1>
+          <p class="sp-subtitle">Your saved LinkedIn posts, tags, and notes.</p>
+        </div>
+        <button id="export-btn" type="button" class="sp-export">Export to Excel</button>
+      </header>
+
+      <section class="sp-filters">
+        <input id="search-input" type="search" placeholder="Search text, author, or tags" />
+        <div class="sp-filters-row">
+          <select id="tag-filter">
+            <option value="">All tags</option>
+          </select>
+          <select id="author-filter">
+            <option value="">All authors</option>
+          </select>
+          <label class="sp-date-filter">
+            <span>From</span>
+            <input id="date-from" type="date" />
+          </label>
+        </div>
+      </section>
+
+      <main id="library" class="sp-library"></main>
+      <p id="sp-status" class="sp-status"></p>
+    </div>
+
+    <script src="sidepanel.js"></script>
+  </body>
+</html>
+
+

@@ -1,0 +1,59 @@
+#linkedin-popout-dropzone {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  width: 220px;
+  height: 120px;
+  padding: 16px;
+  border-radius: 16px;
+  border: 2px dashed #0a66c2;
+  background: rgba(10, 102, 194, 0.1);
+  color: #0a66c2;
+  font-size: 14px;
+  font-weight: 600;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  z-index: 2147483646;
+  transition: transform 0.2s ease, opacity 0.2s ease, box-shadow 0.2s ease;
+  backdrop-filter: blur(6px);
+  box-shadow: 0 12px 30px rgba(32, 33, 36, 0.2);
+}
+
+#linkedin-popout-dropzone.active {
+  transform: scale(1.05);
+  box-shadow: 0 20px 45px rgba(10, 102, 194, 0.35);
+  background: rgba(10, 102, 194, 0.2);
+}
+
+[data-linkedin-popout-ready="true"] {
+  position: relative;
+}
+
+.linkedin-popout-handle {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  border: none;
+  border-radius: 999px;
+  background: rgba(10, 102, 194, 0.9);
+  color: #fff;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 6px 12px;
+  cursor: grab;
+  z-index: 5;
+  box-shadow: 0 4px 12px rgba(10, 102, 194, 0.35);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.linkedin-popout-handle:active {
+  cursor: grabbing;
+}
+
+.linkedin-popout-handle:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 18px rgba(10, 102, 194, 0.4);
+}
+
+

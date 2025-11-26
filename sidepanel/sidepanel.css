@@ -1,0 +1,201 @@
+:root {
+  font-family: "Segoe UI", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  color: #1c1d1f;
+  background: #f3f2ef;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+}
+
+.sp-root {
+  min-height: 100vh;
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.sp-header {
+  background: transparent;
+  padding: 4px 2px 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.sp-header-main {
+  flex: 1;
+}
+
+.sp-title {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 600;
+  color: #111;
+}
+
+.sp-subtitle {
+  margin: 2px 0 0;
+  font-size: 12px;
+  color: #666;
+}
+
+.sp-filters {
+  background: #fff;
+  padding: 8px 10px;
+  border-radius: 10px;
+  border: 1px solid #e3e6ea;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.sp-filters input[type="search"],
+.sp-filters select,
+.sp-filters input[type="date"] {
+  width: 100%;
+  border-radius: 8px;
+  border: 1px solid #d0d7de;
+  padding: 6px 8px;
+  font-size: 13px;
+}
+
+.sp-filters-row {
+  display: flex;
+  gap: 6px;
+}
+
+.sp-filters-row > * {
+  flex: 1;
+}
+
+.sp-date-filter {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  font-size: 11px;
+  color: #555;
+}
+
+.sp-library {
+  flex: 1;
+  overflow-y: auto;
+  padding: 4px 2px 2px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.sp-card {
+  background: #fff;
+  border-radius: 8px;
+  padding: 8px 10px;
+  border: 1px solid transparent;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.sp-card--clickable {
+  cursor: pointer;
+}
+
+.sp-card--clickable:hover {
+  border-color: #d0d7de;
+  background: #f7f9fb;
+}
+
+.sp-card-header {
+  display: flex;
+  justify-content: space-between;
+  gap: 6px;
+}
+
+.sp-card-actor {
+  font-weight: 600;
+  font-size: 13px;
+  color: #0a66c2;
+}
+
+.sp-card-date {
+  font-size: 11px;
+  color: #777;
+  white-space: nowrap;
+}
+
+.sp-card-text {
+  font-size: 12px;
+  color: #333;
+}
+
+.sp-card-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+
+.sp-tag {
+  font-size: 11px;
+  background: #f0f2f5;
+  color: #555;
+  padding: 2px 6px;
+  border-radius: 999px;
+}
+
+.sp-card-note {
+  font-size: 12px;
+  color: #555;
+  border-left: 2px solid #e0e4ea;
+  padding-left: 6px;
+}
+
+.sp-open-link {
+  align-self: flex-start;
+  margin-top: 4px;
+  padding: 0;
+  border: none;
+  background: none;
+  font-size: 11px;
+  color: #0a66c2;
+  cursor: pointer;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.sp-export {
+  border-radius: 999px;
+  border: 1px solid #d0d7de;
+  background: #fff;
+  color: #555;
+  font-size: 11px;
+  padding: 4px 10px;
+  cursor: pointer;
+}
+
+.sp-export:hover {
+  background: #f5f7fa;
+}
+
+.sp-empty {
+  font-size: 12px;
+  color: #777;
+  text-align: center;
+  margin-top: 12px;
+}
+
+.sp-status {
+  font-size: 11px;
+  color: #666;
+  text-align: right;
+  margin: 0;
+}
+
+.sp-status[data-tone="error"] {
+  color: #b3261e;
+}
+

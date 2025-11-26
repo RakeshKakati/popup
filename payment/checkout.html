@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Upgrade to Pro</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: linear-gradient(135deg, #f8f9fa 0%, #e8eef3 100%);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+    .card {
+      background: white;
+      padding: 40px;
+      border-radius: 16px;
+      box-shadow: 0 12px 32px rgba(0,0,0,0.1);
+      max-width: 480px;
+      width: 100%;
+      text-align: center;
+    }
+    h1 {
+      font-size: 28px;
+      margin-bottom: 12px;
+      color: #1c1d1f;
+    }
+    .limit-msg {
+      color: #666;
+      margin-bottom: 32px;
+      font-size: 16px;
+    }
+    .price {
+      font-size: 48px;
+      font-weight: 700;
+      color: #0A66C2;
+      margin-bottom: 8px;
+    }
+    .price-note {
+      color: #666;
+      font-size: 14px;
+      margin-bottom: 32px;
+    }
+    .features {
+      list-style: none;
+      text-align: left;
+      margin-bottom: 32px;
+    }
+    .features li {
+      padding: 8px 0;
+      color: #333;
+    }
+    .features li:before {
+      content: "✓ ";
+      color: #0A66C2;
+      font-weight: bold;
+      margin-right: 8px;
+    }
+    #checkout-btn {
+      width: 100%;
+      padding: 16px;
+      background: #0A66C2;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    #checkout-btn:hover {
+      background: #004182;
+      transform: translateY(-2px);
+    }
+    #checkout-btn:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+    .secure {
+      margin-top: 20px;
+      color: #999;
+      font-size: 12px;
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1>Upgrade to Pro</h1>
+    <p class="limit-msg">You've saved <strong id="post-count">100</strong> posts. Upgrade to continue saving unlimited posts.</p>
+    
+    <div class="price">$9</div>
+    <p class="price-note">One-time payment • Lifetime access</p>
+    
+    <ul class="features">
+      <li><strong>Unlimited saved posts</strong></li>
+      <li>Collections & folders</li>
+      <li>Advanced search & filters</li>
+      <li>Priority support</li>
+      <li>All future updates included</li>
+    </ul>
+    
+    <button id="checkout-btn">Upgrade Now</button>
+    <p class="secure">🔒 Secure payment via Stripe</p>
+  </div>
+
+  <script src="checkout.js"></script>
+</body>
+</html>
+
