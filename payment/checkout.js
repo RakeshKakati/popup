@@ -7,8 +7,25 @@ const CHECKOUT_ENDPOINT = 'https://popup-topaz.vercel.app/create-checkout-sessio
 // TEST MODE: Set to false when backend is deployed and working
 const TEST_MODE = false;
 
-// Load Stripe.js
-const stripe = window.Stripe ? window.Stripe(STRIPE_PUBLISHABLE_KEY) : null;
+// Initialize Stripe (will be set when loaded)
+let stripe = null;
+
+// Wait for Stripe.js to load
+function initializeStripe() {
+  if (window.Stripe) {
+    stripe = window.Stripe(STRIPE_PUBLISHABLE_KEY);
+    console.log('✅ Stripe loaded successfully');
+  } else {
+    console.error('❌ Stripe.js failed to load');
+  }
+}
+
+// Initialize when DOM is ready
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initializeStripe);
+} else {
+  initializeStripe();
+}
 
 // Display current post count
 chrome.storage.local.get(['savedPosts'], (result) => {
