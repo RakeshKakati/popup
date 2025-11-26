@@ -10,21 +10,37 @@ const TEST_MODE = false;
 // Initialize Stripe (will be set when loaded)
 let stripe = null;
 
-// Wait for Stripe.js to load
-function initializeStripe() {
-  if (window.Stripe) {
-    stripe = window.Stripe(STRIPE_PUBLISHABLE_KEY);
-    console.log('✅ Stripe loaded successfully');
-  } else {
-    console.error('❌ Stripe.js failed to load');
+// Load Stripe.js dynamically to avoid CSP issues
+async function loadStripe() {
+  try {
+    // Fetch Stripe.js as text
+    const response = await fetch('https://js.stripe.com/v3/');
+    const stripeCode = await response.text();
+    
+    // Create a script element and inject the code
+    const script = document.createElement('script');
+    script.textContent = stripeCode;
+    document.head.appendChild(script);
+    
+    // Wait a bit for Stripe to initialize
+    await new Promise(resolve => setTimeout(resolve, 100));
+    
+    if (window.Stripe) {
+      stripe = window.Stripe(STRIPE_PUBLISHABLE_KEY);
+      console.log('✅ Stripe loaded successfully');
+    } else {
+      console.error('❌ Stripe.js failed to initialize');
+    }
+  } catch (error) {
+    console.error('❌ Failed to load Stripe.js:', error);
   }
 }
 
-// Initialize when DOM is ready
+// Load Stripe when DOM is ready
 if (document.readyState === 'loading') {
-  document.addEventListener('DOMContentLoaded', initializeStripe);
+  document.addEventListener('DOMContentLoaded', loadStripe);
 } else {
-  initializeStripe();
+  loadStripe();
 }
 
 // Display current post count
