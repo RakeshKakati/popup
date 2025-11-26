@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>LinkedIn Post Manager</title>
+  <title>Popup</title>
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
@@ -12,9 +12,29 @@
       padding: 20px;
       background: #f8f9fa;
     }
+    .header {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 16px;
+    }
+    .logo {
+      width: 32px;
+      height: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, #667eea 0%, #0A66C2 100%);
+      border-radius: 6px;
+      flex-shrink: 0;
+    }
+    .logo svg {
+      width: 18px;
+      height: 18px;
+    }
     h1 {
       font-size: 18px;
-      margin-bottom: 16px;
+      font-weight: 700;
       color: #1c1d1f;
     }
     .status {
@@ -136,7 +156,14 @@
   </style>
 </head>
 <body>
-  <h1>📚 LinkedIn Post Manager</h1>
+  <div class="header">
+    <div class="logo">
+      <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M6 12L9 15L18 6" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </div>
+    <h1>Popup</h1>
+  </div>
   
   <div class="status">
     <div class="status-label">Status</div>
