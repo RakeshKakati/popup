@@ -1,102 +1,306 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>LinkedIn Post Manager - Save & Organize LinkedIn Posts</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Popup - Your LinkedIn Knowledge Manager</title>
   <link rel="stylesheet" href="/landing/styles.css">
 </head>
 <body>
+  <!-- Navigation -->
   <nav class="nav">
     <div class="nav-container">
-      <div class="logo">LinkedIn Post Manager</div>
-      <a href="#pricing" class="nav-cta">Get Started</a>
+      <div class="logo">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="3" y="3" width="18" height="18" rx="3" stroke="currentColor" stroke-width="2"/>
+          <path d="M8 12L10 14L16 8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <span>Popup</span>
+      </div>
+      <a href="#pricing" class="nav-link">Pricing</a>
     </div>
   </nav>
 
-  <header class="hero">
+  <!-- Hero Section -->
+  <section class="hero">
     <div class="hero-container">
-      <h1>Turn LinkedIn Posts Into Your Personal Knowledge Base</h1>
+      <div class="badge">
+        <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+          <circle cx="6" cy="6" r="6" fill="currentColor"/>
+        </svg>
+        Your LinkedIn Knowledge Base
+      </div>
+      
+      <h1 class="hero-title">
+        Turn LinkedIn Posts<br/>Into Your Personal Library
+      </h1>
+      
       <p class="hero-subtitle">
-        Save, tag, and search any LinkedIn post. Build your library of insights, job leads, and inspiration.
+        Save, tag, and organize any LinkedIn post. Build your collection of insights,<br/>
+        job opportunities, and inspiration—all in one searchable library.
       </p>
+
       <div class="hero-cta">
-        <a href="#" class="btn btn-primary" id="install-btn">Add to Chrome - It's Free</a>
+        <a href="https://chromewebstore.google.com" class="btn btn-primary">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+            <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M2 17L12 22L22 17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M2 12L12 17L22 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          Add to Chrome - It's Free
+        </a>
         <p class="hero-note">Free for first 100 posts • No credit card required</p>
       </div>
-    </div>
-  </header>
 
+      <!-- Demo Preview -->
+      <div class="demo-preview">
+        <div class="demo-window">
+          <div class="demo-header">
+            <div class="demo-dots">
+              <span></span>
+              <span></span>
+              <span></span>
+            </div>
+            <div class="demo-title">LinkedIn Post Manager</div>
+          </div>
+          <div class="demo-content">
+            <div class="demo-post">
+              <div class="demo-post-header">
+                <div class="demo-avatar"></div>
+                <div class="demo-post-info">
+                  <div class="demo-name"></div>
+                  <div class="demo-time"></div>
+                </div>
+              </div>
+              <div class="demo-post-body">
+                <div class="demo-line"></div>
+                <div class="demo-line"></div>
+                <div class="demo-line short"></div>
+              </div>
+              <div class="demo-tags">
+                <span class="demo-tag">#AI</span>
+                <span class="demo-tag">#Hiring</span>
+                <span class="demo-tag">#Tech</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features Section -->
   <section class="features">
     <div class="container">
-      <h2>How It Works</h2>
+      <h2 class="section-title">How it works?</h2>
+      <p class="section-subtitle">Save any LinkedIn post in 3 simple steps</p>
+
       <div class="features-grid">
-        <div class="feature">
-          <div class="feature-icon">📌</div>
-          <h3>Drag to Save</h3>
-          <p>Drag any LinkedIn post to the drop zone or click "Pop out" to open it in a clean window.</p>
+        <div class="feature-card">
+          <div class="feature-number">1</div>
+          <div class="feature-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+              <rect x="9" y="9" width="13" height="13" rx="2" stroke="currentColor" stroke-width="2"/>
+              <path d="M5 15H4C2.89543 15 2 14.1046 2 13V4C2 2.89543 2.89543 2 4 2H13C14.1046 2 15 2.89543 15 4V5" stroke="currentColor" stroke-width="2"/>
+            </svg>
+          </div>
+          <h3 class="feature-title">Drag or Click to Save</h3>
+          <p class="feature-description">
+            Drag any LinkedIn post to the drop zone or click the "Pop out" button. The post opens in a clean, distraction-free window.
+          </p>
         </div>
-        <div class="feature">
-          <div class="feature-icon">🏷️</div>
-          <h3>Tag & Organize</h3>
-          <p>Add tags like "Hiring", "AI", "Marketing" and notes to build your personal knowledge base.</p>
+
+        <div class="feature-card">
+          <div class="feature-number">2</div>
+          <div class="feature-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+              <path d="M20.59 13.41L13.42 20.58C13.2343 20.766 13.0137 20.9135 12.7709 21.0141C12.5281 21.1148 12.2678 21.1666 12.005 21.1666C11.7422 21.1666 11.4819 21.1148 11.2391 21.0141C10.9963 20.9135 10.7757 20.766 10.59 20.58L2 12V2H12L20.59 10.59C20.9625 10.9647 21.1716 11.4716 21.1716 12C21.1716 12.5284 20.9625 13.0353 20.59 13.41Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M7 7H7.01" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <h3 class="feature-title">Tag & Organize</h3>
+          <p class="feature-description">
+            Add custom tags like "Hiring", "AI", "Marketing" and personal notes. Build your own categorized knowledge base.
+          </p>
         </div>
-        <div class="feature">
-          <div class="feature-icon">🔍</div>
-          <h3>Search & Filter</h3>
-          <p>Find posts instantly by author, tag, date, or keyword. Export to Excel anytime.</p>
+
+        <div class="feature-card">
+          <div class="feature-number">3</div>
+          <div class="feature-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+              <circle cx="11" cy="11" r="8" stroke="currentColor" stroke-width="2"/>
+              <path d="M21 21L16.65 16.65" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <h3 class="feature-title">Search & Export</h3>
+          <p class="feature-description">
+            Find any post instantly by keyword, author, tag, or date. Export your entire library to Excel for analysis.
+          </p>
         </div>
-        <div class="feature">
-          <div class="feature-icon">💾</div>
-          <h3>Download Images</h3>
-          <p>Save post images with one click. No more screenshots or copy-pasting.</p>
+      </div>
+
+      <!-- Additional Features -->
+      <div class="features-list">
+        <div class="features-list-item">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+            <polyline points="20 6 9 17 4 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <span>Download images with one click</span>
+        </div>
+        <div class="features-list-item">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+            <polyline points="20 6 9 17 4 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <span>Filter by multiple tags and authors</span>
+        </div>
+        <div class="features-list-item">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+            <polyline points="20 6 9 17 4 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <span>Open original posts on LinkedIn anytime</span>
+        </div>
+        <div class="features-list-item">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+            <polyline points="20 6 9 17 4 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <span>Works completely offline after saving</span>
         </div>
       </div>
     </div>
   </section>
 
+  <!-- Pricing Section -->
   <section class="pricing" id="pricing">
     <div class="container">
-      <h2>Simple Pricing</h2>
+      <h2 class="section-title">Simple, transparent pricing</h2>
+      <p class="section-subtitle">Start free, upgrade when you need more</p>
+
       <div class="pricing-grid">
+        <!-- Free Plan -->
         <div class="pricing-card">
-          <h3>Free</h3>
-          <div class="price">$0</div>
-          <p class="price-period">forever</p>
+          <div class="pricing-header">
+            <h3 class="pricing-name">Free</h3>
+            <div class="pricing-price">
+              <span class="price-amount">$0</span>
+              <span class="price-period">forever</span>
+            </div>
+          </div>
+          
           <ul class="pricing-features">
-            <li>✓ Save up to 100 posts</li>
-            <li>✓ Tags & notes</li>
-            <li>✓ Search & filter</li>
-            <li>✓ Excel export</li>
-            <li>✓ Image downloads</li>
+            <li>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+                <polyline points="20 6 9 17 4 12" stroke="currentColor" stroke-width="2"/>
+              </svg>
+              Save up to 100 posts
+            </li>
+            <li>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+                <polyline points="20 6 9 17 4 12" stroke="currentColor" stroke-width="2"/>
+              </svg>
+              Tags & notes
+            </li>
+            <li>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+                <polyline points="20 6 9 17 4 12" stroke="currentColor" stroke-width="2"/>
+              </svg>
+              Search & filter
+            </li>
+            <li>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+                <polyline points="20 6 9 17 4 12" stroke="currentColor" stroke-width="2"/>
+              </svg>
+              Excel export
+            </li>
+            <li>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+                <polyline points="20 6 9 17 4 12" stroke="currentColor" stroke-width="2"/>
+              </svg>
+              Image downloads
+            </li>
           </ul>
-          <a href="#" class="btn btn-secondary" id="install-free">Get Started Free</a>
+
+          <a href="https://chromewebstore.google.com" class="btn btn-secondary">
+            Get Started Free
+          </a>
         </div>
-        <div class="pricing-card pricing-card--featured">
-          <div class="badge">Most Popular</div>
-          <h3>Pro</h3>
-          <div class="price">$9</div>
-          <p class="price-period">one-time payment</p>
+
+        <!-- Pro Plan -->
+        <div class="pricing-card pricing-featured">
+          <div class="pricing-badge">Most Popular</div>
+          <div class="pricing-header">
+            <h3 class="pricing-name">Pro</h3>
+            <div class="pricing-price">
+              <span class="price-amount">$9</span>
+              <span class="price-period">one-time</span>
+            </div>
+            <p class="pricing-note">Lifetime access • Pay once, own forever</p>
+          </div>
+          
           <ul class="pricing-features">
-            <li>✓ <strong>Unlimited saved posts</strong></li>
-            <li>✓ Collections & folders</li>
-            <li>✓ Advanced search</li>
-            <li>✓ Priority support</li>
-            <li>✓ All future updates</li>
+            <li class="featured">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+                <polyline points="20 6 9 17 4 12" stroke="currentColor" stroke-width="2"/>
+              </svg>
+              <strong>Unlimited saved posts</strong>
+            </li>
+            <li>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+                <polyline points="20 6 9 17 4 12" stroke="currentColor" stroke-width="2"/>
+              </svg>
+              Collections & folders
+            </li>
+            <li>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+                <polyline points="20 6 9 17 4 12" stroke="currentColor" stroke-width="2"/>
+              </svg>
+              Advanced search
+            </li>
+            <li>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+                <polyline points="20 6 9 17 4 12" stroke="currentColor" stroke-width="2"/>
+              </svg>
+              Priority support
+            </li>
+            <li>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+                <polyline points="20 6 9 17 4 12" stroke="currentColor" stroke-width="2"/>
+              </svg>
+              All future updates
+            </li>
           </ul>
-          <a href="#" class="btn btn-primary" id="upgrade-btn">Upgrade to Pro</a>
+
+          <a href="https://chromewebstore.google.com" class="btn btn-primary">
+            Upgrade to Pro
+          </a>
         </div>
       </div>
     </div>
   </section>
 
+  <!-- Footer -->
   <footer class="footer">
     <div class="container">
-      <p>&copy; 2025 LinkedIn Post Manager. Not affiliated with LinkedIn.</p>
-      <div class="footer-links">
-        <a href="mailto:support@yoursite.com">Support</a>
-        <a href="#">Privacy</a>
-        <a href="#">Terms</a>
+      <div class="footer-content">
+        <div class="footer-brand">
+          <div class="logo">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+              <rect x="3" y="3" width="18" height="18" rx="3" stroke="currentColor" stroke-width="2"/>
+              <path d="M8 12L10 14L16 8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <span>Popup</span>
+          </div>
+          <p class="footer-tagline">Your LinkedIn Knowledge Manager</p>
+        </div>
+        
+        <div class="footer-links">
+          <a href="mailto:support@popup.app">Support</a>
+          <a href="#">Privacy</a>
+          <a href="#">Terms</a>
+        </div>
+      </div>
+      
+      <div class="footer-bottom">
+        <p>&copy; 2025 Popup. Not affiliated with LinkedIn.</p>
       </div>
     </div>
   </footer>
@@ -104,4 +308,3 @@
   <script src="/landing/script.js"></script>
 </body>
 </html>
-
