@@ -1,5 +1,7 @@
 # 🎨 Chrome Web Store Listing - Copy & Assets
 
+**Extension URL:** https://chromewebstore.google.com/detail/pmejgpmingcbhpifjefenjkjaamlomha
+
 ## Product Name
 ```
 Popup - LinkedIn Knowledge Manager
